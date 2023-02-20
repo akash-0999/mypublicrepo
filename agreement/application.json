@@ -1,0 +1,137 @@
+{
+  "aS2": {
+    "receiveAgreement": {
+      "protocolSettings": {
+        "messageConnectionSettings": {
+          "ignoreCertificateNameMismatch": true,
+          "supportHttpStatusCodeContinue": true,
+          "keepHttpConnectionAlive": true,
+          "unfoldHttpHeaders": true
+        },
+        "acknowledgementConnectionSettings": {
+          "ignoreCertificateNameMismatch": true,
+          "supportHttpStatusCodeContinue": true,
+          "keepHttpConnectionAlive": true,
+          "unfoldHttpHeaders": true
+        },
+        "mdnSettings": {
+          "needMdn": true,
+          "signMdn": true,
+          "sendMdnAsynchronously": false,
+          "dispositionNotificationTo": "http://tempuri.org",
+          "signOutboundMdnIfOptional": true,
+          "sendInboundMdnToMessageBox": true,
+          "micHashingAlgorithm": "SHA1"
+        },
+        "securitySettings": {
+          "overrideGroupSigningCertificate": true,
+          "signingCertificateName": "public-cert",
+          "encryptionCertificateName": "private-cert",
+          "enableNrrForInboundEncodedMessages": true,
+          "enableNrrForInboundDecodedMessages": true,
+          "enableNrrForOutboundMdn": true,
+          "enableNrrForOutboundEncodedMessages": true,
+          "enableNrrForOutboundDecodedMessages": true,
+          "enableNrrForInboundMdn": true
+        },
+        "validationSettings": {
+          "overrideMessageProperties": true,
+          "encryptMessage": true,
+          "signMessage": true,
+          "compressMessage": true,
+          "checkDuplicateMessage": true,
+          "interchangeDuplicatesValidityDays": 100,
+          "checkCertificateRevocationListOnSend": true,
+          "checkCertificateRevocationListOnReceive": true,
+          "encryptionAlgorithm": "AES256"
+        },
+        "envelopeSettings": {
+          "messageContentType": "text/plain",
+          "transmitFileNameInMimeHeader": true,
+          "fileNameTemplate": "Test",
+          "suspendMessageOnFileNameGenerationError": true,
+          "autogenerateFileName": true
+        },
+        "errorSettings": {
+          "suspendDuplicateMessage": true,
+          "resendIfMdnNotReceived": true
+        }
+      },
+      "senderBusinessIdentity": {
+        "qualifier": "AS2Identity",
+        "value": "sender"
+      },
+      "receiverBusinessIdentity": {
+        "qualifier": "AS2Identity",
+        "value": "receiver"
+      }
+    },
+    "sendAgreement": {
+      "protocolSettings": {
+        "messageConnectionSettings": {
+          "ignoreCertificateNameMismatch": true,
+          "supportHttpStatusCodeContinue": true,
+          "keepHttpConnectionAlive": true,
+          "unfoldHttpHeaders": true
+        },
+        "acknowledgementConnectionSettings": {
+          "ignoreCertificateNameMismatch": true,
+          "supportHttpStatusCodeContinue": true,
+          "keepHttpConnectionAlive": true,
+          "unfoldHttpHeaders": true
+        },
+        "mdnSettings": {
+          "needMdn": true,
+          "signMdn": true,
+          "sendMdnAsynchronously": false,
+          "dispositionNotificationTo": "http://tempuri.org",
+          "signOutboundMdnIfOptional": true,
+          "sendInboundMdnToMessageBox": true,
+          "micHashingAlgorithm": "SHA1"
+        },
+        "securitySettings": {
+          "overrideGroupSigningCertificate": true,
+          "signingCertificateName": "private-cert",
+          "encryptionCertificateName": "public-cert",
+          "enableNrrForInboundEncodedMessages": true,
+          "enableNrrForInboundDecodedMessages": true,
+          "enableNrrForOutboundMdn": true,
+          "enableNrrForOutboundEncodedMessages": true,
+          "enableNrrForOutboundDecodedMessages": true,
+          "enableNrrForInboundMdn": true
+        },
+        "validationSettings": {
+          "overrideMessageProperties": true,
+          "encryptMessage": true,
+          "signMessage": true,
+          "compressMessage": true,
+          "checkDuplicateMessage": true,
+          "interchangeDuplicatesValidityDays": 100,
+          "checkCertificateRevocationListOnSend": true,
+          "checkCertificateRevocationListOnReceive": true,
+          "encryptionAlgorithm": "AES256"
+        },
+        "envelopeSettings": {
+          "messageContentType": "text/plain",
+          "transmitFileNameInMimeHeader": true,
+          "fileNameTemplate": "Test",
+          "suspendMessageOnFileNameGenerationError": true,
+          "autogenerateFileName": true
+        },
+        "errorSettings": {
+          "suspendDuplicateMessage": true,
+          "resendIfMdnNotReceived": true
+        }
+      },
+      "senderBusinessIdentity": {
+        "qualifier": "AS2Identity",
+        "value": "sender"
+      },
+      "receiverBusinessIdentity": {
+        "qualifier": "AS2Identity",
+        "value": "receiver"
+      }
+    }
+
+  }
+}
