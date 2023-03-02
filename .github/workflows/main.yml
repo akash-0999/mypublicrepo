@@ -1,45 +1,18 @@
-
-# This workflow deploys Azure automation runbooks into Azure.
-
-name: deploying files to azure storage
-
+name: Upload To Azure Blob Storage
 on:
   push:
-    branches: ["master"]
-    paths:
-      - "scripts/automation/**"
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  id-token: write
-
+    branches:
+      - main
 jobs:
-  build-and-deploy:
+  upload:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - uses: azure/login@v1
+      - uses: actions/checkout@v2
+      - uses: bacongobbler/azure-blob-storage-upload@main
         with:
-           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    # Upload files
-      - name: Upload json to Azure Blob Storage
-        id: upload
-        uses: github-developer/upload-azure-blob@v1
-        with:
-           account: akashstg
-           destination: myfile
-           source: '**/*.json'
-
-# Print out the urls to uploaded files
-      - name: Print URLs
-        run: echo $URLS # { ["filename":"hulatocat.png","url":"https://octodex.blob.core.windows.net/octocats/hulatocat.png"] }
-        env:
-          URLS: ${{ steps.upload.outputs.urls }}
- 
-# Logout
-      - name: logout
-        run: |
-          az logout
+          source_dir: _dist
+          container_name: www
+          connection_string: ${{ secrets.ConnectionString }}
+          extra_args: '--pattern *.tar.gz'
+          # WARNING: this will overwrite existing blobs in your blob storage
+          overwrite: 'true'
