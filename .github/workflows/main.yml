@@ -12,4 +12,4 @@ jobs:
         with:
           connection_string: ${{ secrets.YourAzureBlobConnectionString }}
           container_name: myfile
-          source_folder: .\agreement
+          source_folder: mypublicrepo/agreement/
