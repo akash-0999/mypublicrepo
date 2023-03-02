@@ -1,26 +1,45 @@
-# GitHub Actions repository workflow file, e.g .github/workflows/upload.yml
 
-# ...
-# previous steps to choose a runner type, prepare files, etc
-# ...
+# This workflow deploys Azure automation runbooks into Azure.
 
-- uses: azure/login@v1
-  with:
-    creds: ${{ secrets.AZURE_CREDENTIALS }}
+name: deploying files to azure storage
 
-# Upload `.png`s to Azure Blob Storage
-- name: Upload all PNGs to Azure Blob Storage
-  id: upload
-  uses: github-developer/upload-azure-blob@v1
-  with:
-    account: octodex
-    destination: octocats
-    source: '**/*.png'
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - "scripts/automation/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: azure/login@v1
+        with:
+           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    # Upload files
+      - name: Upload json to Azure Blob Storage
+        id: upload
+        uses: github-developer/upload-azure-blob@v1
+        with:
+           account: akashstg
+           destination: myfile
+           source: '**/*.json'
 
 # Print out the urls to uploaded files
-- name: Print URLs
-  run: echo $URLS # { ["filename":"hulatocat.png","url":"https://octodex.blob.core.windows.net/octocats/hulatocat.png"] }
-  env:
-    URLS: ${{ steps.upload.outputs.urls }}
-
-# ...
+      - name: Print URLs
+        run: echo $URLS # { ["filename":"hulatocat.png","url":"https://octodex.blob.core.windows.net/octocats/hulatocat.png"] }
+        env:
+          URLS: ${{ steps.upload.outputs.urls }}
+ 
+# Logout
+      - name: logout
+        run: |
+          az logout
